@@ -7,7 +7,7 @@ const EditMovie = ( {movie} ) => {
         e.preventDefault();
         try {
             const body = { comment };
-            const response = await fetch(
+            await fetch(
                 `http://localhost:3000/movies/${movie._id}`,
                 {
                     method: 'PUT',
@@ -15,8 +15,6 @@ const EditMovie = ( {movie} ) => {
                     body: JSON.stringify(body)
                 }
             );
-
-            window.location = '/';
         } catch(err) {
             console.error(err.message);
         }
@@ -63,7 +61,10 @@ const EditMovie = ( {movie} ) => {
                                 type='button'
                                 className='btn btn-warning'
                                 data-dismiss='modal'
-                                onClick={e => updateComment(e)}
+                                onClick={(e) => { 
+                                    updateComment(e); 
+                                    window.location.reload(); 
+                                }}
                             >
                                 Close
                             </button>

@@ -28,7 +28,7 @@ app.get('/movies', async (req, res) => {
 // add a movie to db
 app.post('/movies', async (req, res) => {
     try {
-        const addMovie = await Movie.create({
+        await Movie.create({
             title: req.title,
             year: req.year,
             score: req.score,
@@ -47,9 +47,9 @@ app.put('/movies/:id', async (req, res) => {
     try {
         const { id } = req.params;
         const { comment } = req.body;
-        const updateMovie = await Movie.updateOne(
-            { id: id }, 
-            { comment: comment }
+        await Movie.updateOne(
+            { _id: id }, 
+            { comment }
             );
     } catch(err) {
         console.error(err.message);
@@ -60,7 +60,7 @@ app.put('/movies/:id', async (req, res) => {
 app.delete('/movies', async (req, res) => {
     try {
         const { id } = req.params;
-        const deleteMovie = await Movie.deleteOne({ id: id });
+        await Movie.deleteOne({ id: id });
         res.json('Movie was removed');
     } catch(err) {
         console.error(err.message);
