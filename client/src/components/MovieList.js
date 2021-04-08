@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import EditMovie from './EditMovie';
+import MovieInfo from './MovieInfo';
 
 const Div = styled.div`
     margin: auto;
@@ -53,7 +54,7 @@ const MovieList = () => {
     return (
         <Fragment>
             <Div>
-                <table className='table table-responsive{-md}' cellSpacing='0'>
+                <table className='table table-responsive{-md} table-borderless' cellSpacing='0'>
                     <Thead className='thead-dark'>
                         <tr>
                             <Th scope='col'>Title</Th>
@@ -68,7 +69,9 @@ const MovieList = () => {
                     <tbody>
                         {movies.map(movie => (
                             <tr key={movie._id}>
-                                <th scope ='row'>{movie.title}</th>
+                                <th>
+                                    <MovieInfo movie={movie} />
+                                </th>
                                 <td>{movie.year}</td>
                                 <td>{movie.score}</td>
                                 <td>{movie.country}</td>
