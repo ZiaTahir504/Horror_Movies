@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import EditMovie from './EditMovie';
-import MovieInfo from './MovieInfo';
+import MovieTitles from './MovieTitles';
 
 const Div = styled.div`
     margin: auto;
@@ -19,6 +19,10 @@ const Thead = styled.thead`
 const Th = styled.th`
     position: sticky;
     top: 0;
+`;
+
+const Input = styled.input`
+   
 `;
 
 const MovieList = () => {
@@ -47,6 +51,13 @@ const MovieList = () => {
         }
     };
 
+    const searchTitles = async (e) => {
+        if (e.keyCode === 13) {
+            let input = e.target.value;
+            console.log('bbep');
+        }
+    };
+
     useEffect(() => {
         getMovies();
     }, []);
@@ -54,10 +65,12 @@ const MovieList = () => {
     return (
         <Fragment>
             <Div>
-                <table className='table table-responsive{-md} table-borderless' cellSpacing='0'>
+                <table className='table table-responsive{-md} table-borderless' data-toggle='table' cellSpacing='0'>
                     <Thead className='thead-dark'>
                         <tr>
-                            <Th scope='col'>Title</Th>
+                            <Th scope='col'>
+                                <Input type="text" onkeydown='searchTitles(this)' placeholder="Search for movie title..." />
+                            </Th>
                             <Th scope='col'>Year</Th>
                             <Th scope='col'>Rating</Th>
                             <Th scope='col'>Country</Th>
@@ -70,7 +83,7 @@ const MovieList = () => {
                         {movies.map(movie => (
                             <tr key={movie._id}>
                                 <th>
-                                    <MovieInfo movie={movie} />
+                                    <MovieTitles movie={movie} />
                                 </th>
                                 <td>{movie.year}</td>
                                 <td>{movie.score}</td>

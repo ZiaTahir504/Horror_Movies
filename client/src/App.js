@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 
 import Header from './components/Header';
-import MovieList from './components/MovieList';
+import MovieList from './components/MainMovieBody/MovieList';
 
 function App() {
   return (

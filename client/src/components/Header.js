@@ -22,7 +22,7 @@ const Header = () => {
     return (
         <Fragment>
             <Div>
-                <Title>Zia's Spooky List</Title>
+                <Title>Spooky Movies</Title>
             </Div>
         </Fragment>
     );

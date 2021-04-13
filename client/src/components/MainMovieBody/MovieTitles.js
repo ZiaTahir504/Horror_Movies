@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-const MovieInfo = ( {movie} ) => {
+const MovieTitles = ( {movie} ) => {
     return (
         <Fragment>
             <button
@@ -51,4 +51,4 @@ const MovieInfo = ( {movie} ) => {
     );
 };
 
-export default MovieInfo;
+export default MovieTitles;
