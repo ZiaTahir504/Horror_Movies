@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import EditMovie from './EditMovie';
 import MovieTitles from './MovieTitles';
+import AddMovie from './AddMovie';
 
 const Div = styled.div`
     margin: auto;
@@ -106,6 +107,7 @@ const MovieList = () => {
                     </tbody>
                 </table>
             </Div>
+            <AddMovie />
         </Fragment>
     )
 };
