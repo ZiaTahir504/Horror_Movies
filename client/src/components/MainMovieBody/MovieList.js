@@ -70,7 +70,7 @@ const MovieList = () => {
                     <Thead className='thead-dark'>
                         <tr>
                             <Th scope='col'>
-                                <Input type="text" onkeydown='searchTitles(this)' placeholder="Search for movie title..." />
+                                <Input type="text" onkeydown='searchTitles(this)' placeholder="Search for title / keyword" />
                             </Th>
                             <Th scope='col'>Year</Th>
                             <Th scope='col'>Rating</Th>
