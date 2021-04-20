@@ -31,6 +31,7 @@ const AddMovie = () => {
                                     type='button'
                                     className='close'
                                     data-dismiss='modal'
+                                    onClick={(e) => window.location.reload()}
                                 >
                                     &times;
                                 </button>

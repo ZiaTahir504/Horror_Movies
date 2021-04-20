@@ -29,7 +29,6 @@ app.get('/movies', async (req, res) => {
 
 // add a movie to db
 app.post('/movies', async (req, res) => {
-    console.log(JSON.stringify(req.body));
     const { body } = req;
     try {
         await Movie.create({
@@ -41,7 +40,6 @@ app.post('/movies', async (req, res) => {
             country: body.inputCountry,
             comment: body.inputComment,
         });
-        res.json('Movie was added');
     } catch(err) {
         console.error(err.message);
     }
@@ -66,7 +64,6 @@ app.delete('/movies/:id', async (req, res) => {
     try {
         const { id } = req.params;
         await Movie.deleteOne({ _id: id });
-        res.json('Movie was removed');
     } catch(err) {
         console.error(err.message);
     }

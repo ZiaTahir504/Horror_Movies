@@ -97,7 +97,10 @@ const MovieList = () => {
                                     <button 
                                         type='button' 
                                         className='btn btn-danger btn-rounded btn-sm m-0'
-                                        onClick={() => deleteMovie(movie._id)}
+                                        onClick={() => {
+                                            deleteMovie(movie._id);
+                                            window.location.reload();
+                                        }}
                                     >
                                         Delete
                                     </button>
