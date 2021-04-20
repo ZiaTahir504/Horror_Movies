@@ -23,18 +23,20 @@ const Th = styled.th`
 `;
 
 const Input = styled.input`
-   
+   width: 15vw;
+   max-width: 300px;
 `;
 
 const MovieList = () => {
     const [movies, setMovies] = useState([]);
+    const [searchTerm, setSearchTerm] = useState([]);
 
     const getMovies = async () => {
         try {
             const movies = await fetch('http://localhost:3000/movies');
             const jsonData = await movies.json();
             
-            setMovies(jsonData);
+            setMovies(jsonData.sort((a,b) => b.year - a.year));
         } catch(err) {
             console.error(err.message);
         }
@@ -46,16 +48,21 @@ const MovieList = () => {
                 method: 'DELETE'
             });
 
-            setMovies(movies.filter(movie => movie._id !== id));
+            await setMovies(movies.filter(movie => movie._id !== id));
         } catch(err) {
             console.error(err.message);
         }
     };
 
-    const searchTitles = async (e) => {
-        if (e.keyCode === 13) {
-            let input = e.target.value;
-            console.log('bbep');
+    const searchMovies = async () => {
+        try {
+            const filtered = await movies.filter((movie) => Object.values(movie)
+                                                                  .join(' ')
+                                                                  .toLowerCase()
+                                                                  .includes(searchTerm.toLowerCase()));
+            setMovies(filtered);
+        } catch(err) {
+            console.error(err.message);
         }
     };
 
@@ -69,8 +76,30 @@ const MovieList = () => {
                 <table className='table table-responsive{-md} table-borderless' data-toggle='table' cellSpacing='0'>
                     <Thead className='thead-dark'>
                         <tr>
-                            <Th scope='col'>
-                                <Input type="text" onkeydown='searchTitles(this)' placeholder="Search for title / keyword" />
+                            <Th scope='col' className='input-group'>
+                                <Input 
+                                    type="text" 
+                                    className='form-control' 
+                                    placeholder='Search for title / keyword'
+                                    aria-label='Search for title / keyword'
+                                    aria-describedby='basic-addon2'
+                                    onChange={(e) => setSearchTerm(e.target.value)} 
+                                />
+                                <div className='input-group-append'>
+                                    <button 
+                                        className='btn btn-secondary btn-sm' 
+                                        type='button'
+                                        onClick={() => searchMovies()}
+                                        >
+                                            Search
+                                        </button>
+                                    <button 
+                                        className='btn btn-danger btn-sm' 
+                                        type='button'
+                                        >
+                                            Reset
+                                        </button>
+                                </div>
                             </Th>
                             <Th scope='col'>Year</Th>
                             <Th scope='col'>Rating</Th>
