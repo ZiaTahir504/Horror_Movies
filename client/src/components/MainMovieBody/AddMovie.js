@@ -39,31 +39,31 @@ const AddMovie = () => {
                                 <form action='http://localhost:3000/movies' method='POST'>
                                     <div className='form-group'>
                                         <label htmlFor='inputTitle'>Title</label>
-                                        <input name='title' type='text' className='form-control' id='inputTitle' placeholder='Title'></input>
+                                        <input name='inputTitle' type='text' className='form-control' id='inputTitle' placeholder='Title'></input>
                                     </div>
                                     <div className='form-group'>
                                         <label htmlFor='inputYear'>Year</label>
-                                        <input name='year' type='text' className='form-control' id='inputYear' placeholder='Year'></input>
+                                        <input name='inputYear' type='text' className='form-control' id='inputYear' placeholder='Year'></input>
                                     </div>
                                     <div className='form-group'>
                                         <label htmlFor='inputScore'>RT Score</label>
-                                        <input name='score' type='text' className='form-control' id='inputScore' placeholder='Rotten Tomato Score'></input>
+                                        <input name='inputScore' type='text' className='form-control' id='inputScore' placeholder='Rotten Tomato Score'></input>
                                     </div>
                                     <div className='form-group'>
                                         <label htmlFor='inputCountry'>Country</label>
-                                        <input name='country' type='text' className='form-control' id='inputCountry' placeholder='Country'></input>
+                                        <input name='inputCountry' type='text' className='form-control' id='inputCountry' placeholder='Country'></input>
                                     </div>
                                     <div className='form-group'>
                                         <label htmlFor='inputSeen'>Seen?</label>
-                                        <input name='seen' type='text' className='form-control' id='inputSeen' placeholder='Seen?'></input>
+                                        <input name='inputSeen' type='text' className='form-control' id='inputSeen' placeholder='Seen?'></input>
                                     </div>
                                     <div className='form-group'>
                                         <label htmlFor='inputAbout'>About</label>
-                                        <input name='about' type='text' className='form-control' id='inputAbout' placeholder='About'></input>
+                                        <input name='inputAbout' type='text' className='form-control' id='inputAbout' placeholder='About'></input>
                                     </div>
                                     <div className='form-group'>
                                         <label htmlFor='inputComment'>Comment</label>
-                                        <input name='comment' type='text' className='form-control' id='inputComment' placeholder='Leave blank if not yet seen'></input>
+                                        <input name='inputComment' type='text' className='form-control' id='inputComment' placeholder='Leave blank if not yet seen'></input>
                                     </div>
                                     <div>
                                         <input 
