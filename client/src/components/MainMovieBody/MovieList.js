@@ -57,9 +57,9 @@ const MovieList = () => {
     const searchMovies = async () => {
         try {
             const filtered = await movies.filter((movie) => Object.values(movie)
-                                                                  .join(' ')
-                                                                  .toLowerCase()
-                                                                  .includes(searchTerm.toLowerCase()));
+                .join(' ')
+                .toLowerCase()
+                .includes(searchTerm.toLowerCase()));
             setMovies(filtered);
         } catch(err) {
             console.error(err.message);
@@ -96,6 +96,7 @@ const MovieList = () => {
                                     <button 
                                         className='btn btn-danger btn-sm' 
                                         type='button'
+                                        onClick={() => getMovies()}
                                         >
                                             Reset
                                         </button>
