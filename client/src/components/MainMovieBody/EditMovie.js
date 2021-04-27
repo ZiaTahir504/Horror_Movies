@@ -38,7 +38,7 @@ const EditMovie = ( {movie} ) => {
                 <div className='modal-dialog'>
                     <div className='modal-content'>
                         <div className='modal-header'>
-                            <h4 className='modal-title'>Edit Movie Comment</h4>
+                            <h4 className='modal-title'>Edit Movie Entry</h4>
                             <button
                                 type='button'
                                 className='close'
@@ -54,6 +54,11 @@ const EditMovie = ( {movie} ) => {
                                 className='form-control'
                                 value={comment}
                                 onChange={e => setComment(e.target.value)}
+                            />
+                            <input
+                                type='text'
+                                className='form-control'
+                                value='seen'
                             />
                         </div>
                         <div className='modal-footer'>
