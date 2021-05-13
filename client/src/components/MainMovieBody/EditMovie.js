@@ -49,17 +49,34 @@ const EditMovie = ( {movie} ) => {
                             </button>
                         </div>
                         <div className ='modal-body'>
+                            <text>Movie Comment</text>
+                            <p></p>
                             <input
                                 type='text'
                                 className='form-control'
                                 value={comment}
                                 onChange={e => setComment(e.target.value)}
                             />
-                            <input
-                                type='text'
-                                className='form-control'
-                                value='seen'
-                            />
+                            <p></p>
+                            <text>Seen?</text>
+                            <p></p>
+                            <div className='form-check form-check-inline'>
+                                <input
+                                    type='checkbox'
+                                    id="inlineCheckbox1"
+                                    className='form-check-input'
+                                    value='option1'
+                                />
+                                <label class='form-check-label' for='inlineCheckbox1'>Yes</label>
+                                &nbsp;&nbsp;&nbsp;
+                                <input
+                                    type='checkbox'
+                                    id="inlineCheckbox2"
+                                    className='form-check-input'
+                                    value='option2'
+                                />
+                                <label class='form-check-label' for='inlineCheckbox2'>No</label>
+                            </div>
                         </div>
                         <div className='modal-footer'>
                             <button
