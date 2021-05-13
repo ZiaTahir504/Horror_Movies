@@ -2,13 +2,14 @@ import React, { Fragment, useState } from "react";
 
 const EditMovie = ( {movie} ) => {
     const [comment, setComment] = useState(movie.comment);
+    const [seen, setSeen] = useState(movie.seen);
 
     const updateComment = async e => {
         e.preventDefault();
         try {
             const body = { comment };
             await fetch(
-                `http://localhost:3000/movies/${movie._id}`,
+                `http://localhost:3000/movies/comment/${movie._id}`,
                 {
                     method: 'PUT',
                     headers: { "Content-Type": "application/json" },
@@ -19,6 +20,22 @@ const EditMovie = ( {movie} ) => {
             console.error(err.message);
         }
     }
+
+    const updateSeenStatus = async () => {
+        try {
+            const body = { seen };
+            await fetch(
+                `http://localhost:3000/movies/seen/${movie._id}`,
+                {
+                    method: 'PUT',
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(body)
+                }
+            );
+        } catch(err) {
+            console.error(err.message);
+        }
+    };
 
     return (
         <Fragment>
@@ -49,7 +66,7 @@ const EditMovie = ( {movie} ) => {
                             </button>
                         </div>
                         <div className ='modal-body'>
-                            <text>Movie Comment</text>
+                            <h1>Movie Comment</h1>
                             <p></p>
                             <input
                                 type='text'
@@ -58,7 +75,7 @@ const EditMovie = ( {movie} ) => {
                                 onChange={e => setComment(e.target.value)}
                             />
                             <p></p>
-                            <text>Seen?</text>
+                            <h1>Seen?</h1>
                             <p></p>
                             <div className='form-check form-check-inline'>
                                 <input
@@ -66,16 +83,23 @@ const EditMovie = ( {movie} ) => {
                                     id="inlineCheckbox1"
                                     className='form-check-input'
                                     value='option1'
+                                    onClick={() => { 
+                                        setSeen('yes'); 
+                                        console.log(seen);
+                                    }}
                                 />
-                                <label class='form-check-label' for='inlineCheckbox1'>Yes</label>
+                                <label className='form-check-label' htmlFor='inlineCheckbox1'>Yes</label>
                                 &nbsp;&nbsp;&nbsp;
                                 <input
                                     type='checkbox'
                                     id="inlineCheckbox2"
                                     className='form-check-input'
                                     value='option2'
-                                />
-                                <label class='form-check-label' for='inlineCheckbox2'>No</label>
+                                    onClick={() => { 
+                                        setSeen('no'); 
+                                        console.log(seen);
+                                    }}                                />
+                                <label className='form-check-label' htmlFor='inlineCheckbox2'>No</label>
                             </div>
                         </div>
                         <div className='modal-footer'>
@@ -83,9 +107,15 @@ const EditMovie = ( {movie} ) => {
                                 type='button'
                                 className='btn btn-warning'
                                 data-dismiss='modal'
-                                onClick={(e) => { 
-                                    updateComment(e); 
-                                    window.location.reload(); 
+                                onClick={(e) => {
+                                    if (e !== null || undefined) {
+                                        updateComment(e); 
+                                        updateSeenStatus();
+                                        window.location.reload();
+                                    } else {
+                                        updateSeenStatus();
+                                        window.location.reload(); 
+                                    }
                                 }}
                             >
                                 Close
