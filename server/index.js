@@ -2,6 +2,7 @@ require('dotenv').config({path: '../.env'});
 require('./database/index');
 
 const path = require('path');
+const popupS = require('popups');
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -31,28 +32,51 @@ app.get('/movies', async (req, res) => {
 app.post('/movies', async (req, res) => {
     const { body } = req;
     try {
-        await Movie.create({
-            title: body.inputTitle,
-            year: body.inputYear,
-            score: body.inputScore,
-            about: body.inputAbout,
-            seen: body.inputSeen,
-            country: body.inputCountry,
-            comment: body.inputComment,
-        });
+        if (!body.inputTitle || !body.inputYear || !body.inputScore
+            || !body.inputAbout || !body.inputSeen || !body.inputCountry
+            || !body.inputComment) {
+                popupS.alert({ content: 'fill out all forms please'});
+            }
+        else if (Movie.findOne({title: body.inputTitle}) !== undefined) {
+                popupS.alert({ content: 'movie already in database'});
+        } else {
+            await Movie.create({
+                title: body.inputTitle,
+                year: body.inputYear,
+                score: body.inputScore,
+                about: body.inputAbout,
+                seen: body.inputSeen,
+                country: body.inputCountry,
+                comment: body.inputComment,
+            });
+        }
     } catch(err) {
         console.error(err.message);
     }
 });
 
-// update a movie's info in db
-app.put('/movies/:id', async (req, res) => {
+// update a movie's comment info in db
+app.put('/movies/comment/:id', async (req, res) => {
     try {
         const { id } = req.params;
         const { comment } = req.body;
         await Movie.updateOne(
             { _id: id }, 
-            { comment }
+            { comment },
+            );
+    } catch(err) {
+        console.error(err.message);
+    }
+});
+
+// update a movie's seen info in db
+app.put('/movies/seen/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { seen } = req.body;
+        await Movie.updateOne(
+            { _id: id }, 
+            { seen: seen },
             );
     } catch(err) {
         console.error(err.message);

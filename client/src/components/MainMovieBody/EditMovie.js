@@ -118,7 +118,7 @@ const EditMovie = ( {movie} ) => {
                                     }
                                 }}
                             >
-                                Close
+                                Save Edit
                             </button>
                         </div>
                     </div>
